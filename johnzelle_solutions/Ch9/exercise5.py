@@ -13,22 +13,69 @@ def getInputs():
     n = eval(input("How many games to simulate? "))
     return a, b, n
 
-def simNGames(n, probA, probB):
+def simNGames_25(n, probA, probB):
     winsA = 0
     winsB = 0
     for i in range(n):
-        scoreA, scoreB = simOneGame(probA, probB, n)
+        scoreA, scoreB = simOneGame_25(probA, probB, n)
         if scoreA > scoreB:
            winsA = winsA + 1
         else:
            winsB = winsB + 1    
     return winsA, winsB
 
-def simOneGame(probA, probB, n):
+def simOneGame_25(probA, probB, n):
     scoreA = 0
     scoreB = 0
     serving = whoServes(n)
-    while not gameOver(scoreA, scoreB):
+    while not gameOver_25(scoreA, scoreB):
+        if serving == "A":
+           if random() < probA:
+              scoreA = scoreA + 1
+           else:
+              serving = "B"
+              scoreB = scoreB + 1
+        else:
+           if random() < probB:
+              scoreB = scoreB + 1
+           else:
+              serving = "A"
+              scoreA = scoreA + 1
+    return scoreA, scoreB 
+
+def whoServes(n):
+    if n % 2 == 0:
+        return "A"
+    else:
+        return "B"
+
+
+def gameOver_25(a, b):
+    if a > 23 or b > 23:
+        if abs(a-b) >= 2:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+def simNGames_15(n, probA, probB):
+    winsA = 0
+    winsB = 0
+    for i in range(n):
+        scoreA, scoreB = simOneGame_15(probA, probB, n)
+        if scoreA > scoreB:
+           winsA = winsA + 1
+        else:
+           winsB = winsB + 1    
+    return winsA, winsB
+
+def simOneGame_15(probA, probB, n):
+    scoreA = 0
+    scoreB = 0
+    serving = whoServes(n)
+    while not gameOver_15(scoreA, scoreB):
         if serving == "A":
            if random() < probA:
               scoreA = scoreA + 1
@@ -41,14 +88,8 @@ def simOneGame(probA, probB, n):
               serving = "A"
     return scoreA, scoreB 
 
-def whoServes(n):
-    if n % 2 == 0:
-        return "A"
-    else:
-        return "B"
 
-
-def gameOver(a, b):
+def gameOver_15(a, b):
     if a > 13 or b > 13:
         if abs(a-b) >= 2:
             return True
@@ -56,6 +97,10 @@ def gameOver(a, b):
             return False
     else:
         return False
+
+
+
+
 
 def printSummary(winsA, winsB):
     n = winsA + winsB 
@@ -71,8 +116,10 @@ def printSummary(winsA, winsB):
 def main():
     printIntro()
     probA, probB, n = getInputs()
-    winsA, winsB = simNGames(n, probA, probB)
-    printSummary(winsA, winsB)
+    winsA_15, winsB_15 = simNGames_15(n, probA, probB)
+    winsA_25, winsB_25 = simNGames_25(n, probA, probB)
+    printSummary(winsA_15, winsB_15)
+    printSummary(winsA_25, winsB_25)
 
 
 

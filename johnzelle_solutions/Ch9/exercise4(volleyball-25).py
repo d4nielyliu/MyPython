@@ -34,11 +34,13 @@ def simOneGame(probA, probB, n):
               scoreA = scoreA + 1
            else:
               serving = "B"
+              scoreB = scoreB + 1
         else:
            if random() < probB:
               scoreB = scoreB + 1
            else:
               serving = "A"
+              scoreA = scoreA + 1
     return scoreA, scoreB 
 
 def whoServes(n):
@@ -49,7 +51,7 @@ def whoServes(n):
 
 
 def gameOver(a, b):
-    if a > 13 or b > 13:
+    if a > 23 or b > 23:
         if abs(a-b) >= 2:
             return True
         else:
