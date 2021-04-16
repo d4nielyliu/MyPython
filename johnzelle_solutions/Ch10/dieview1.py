@@ -1,4 +1,4 @@
-# dieview.py
+# dieview1.py
 from graphics import *
 from random import randrange
 class DieView:
@@ -88,6 +88,7 @@ class DieView:
 
     def setColor(self, color):
         self.foreground = color
+        self.setValue(self.value)
 
     def roll(self):
         self.value = randrange(1, 7)

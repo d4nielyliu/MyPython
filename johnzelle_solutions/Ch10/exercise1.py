@@ -14,8 +14,7 @@ def main():
     while cball.getY() >= 0:
         cball.update(time)
 
-    hmax = cball.maxheight()
-    print("\nThe highest height: {0:0.1f} meters.".format(hmax))
+#    print("\nThe highest height: {0:0.1f} meters.".format(hmax))
     print("\nDistance traveled: {0:0.1f} meters.".format(cball.getX()))
 
 main()
