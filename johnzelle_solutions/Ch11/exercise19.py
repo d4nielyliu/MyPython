@@ -33,9 +33,9 @@ class Set:
             
 
     def subtraction(self, set2):
-        for x in self.set:
-            if x in set2:
-               self.set.remove(x)
+        for x in set2:
+            while x in self.set:
+                self.set.remove(x)
         return self.set
 
     def getSet(self):
@@ -54,12 +54,13 @@ def main():
     setB = ['flat', 'cat', 'rectangle', 'banana', 'dog', 'mouse', 'lemon']
     print("The set B is", setB)
     setC = ['cat', 'dog', 'mouse', 'fish']
+    print("The set C is", setC)
     intersect = setA.intersection(setB)
     print("The intersection between A and B is ", intersect)
     U = setA.union(setB)
     print("The union is ", U)
     Sub = setA.subtraction(setC)
-    print("The substraction is ", Sub)
+    print("The substraction A-C is ", Sub)
 
 
 
